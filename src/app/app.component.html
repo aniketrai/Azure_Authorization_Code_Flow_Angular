@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Premium and Gifting</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button color="primary" *ngIf="!adalService.userInfo.authenticated" (click)="login()">LOGIN</button>
+    <button mat-flat-button color="primary" *ngIf="adalService.userInfo.authenticated" (click)="logout()">LOGOUT</button>
+  </mat-toolbar-row>
+</mat-toolbar>
