@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdalService } from 'adal-angular4';
 import { environment } from '../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -22,22 +22,21 @@ export class AppComponent implements OnInit {
       this.adalService.acquireToken("744e7ff9-802f-499f-bc4e-0a2b925d65c9").subscribe(
         data => {
           console.log(data);
+          const authToken = 'Bearer ' + data;
+          const headers = new HttpHeaders().set('Authorization', authToken);
+
+          this.http.get<any>('https://authwebapi.azurewebsites.net/api/values', {
+            headers: headers
+          }).subscribe(
+            data => {
+              console.log(data);
+            }
+          );
         }
       );
 
 
-      const param = {
-        client_id: '2cc19000-7eec-4db6-8ba6-5e857b813cb2',
-        code: this.adalService.userInfo.token,
-        redirect_uri: 'http://localhost:4200',
 
-      };
-
-      // this.http.post<any>("https://login.microsoftonline.com/aniketrai2mindtree.onmicrosoft.com/oauth2/token", param).subscribe(
-      //   data => {
-      //     console.log(data);
-      //   }
-      // )
     }
   }
 
