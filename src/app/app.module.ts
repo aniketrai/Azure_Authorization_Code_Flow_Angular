@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AdalService } from 'adal-angular4';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
 import {
   MatToolbarModule,
   MatButtonModule
@@ -14,6 +16,7 @@ import {
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule
   ],
