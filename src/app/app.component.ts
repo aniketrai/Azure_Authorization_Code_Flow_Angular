@@ -18,14 +18,18 @@ export class AppComponent implements OnInit {
     this.adalService.handleWindowCallback();
 
     if (this.adalService.userInfo.authenticated) {
+
       console.log(this.adalService.userInfo.token);
-      this.adalService.acquireToken("744e7ff9-802f-499f-bc4e-0a2b925d65c9").subscribe(
+
+      this.adalService.acquireToken("f4df9e4e-5b02-41c8-888b-3eacb40773ff").subscribe(
         data => {
+
           console.log(data);
+
           const authToken = 'Bearer ' + data;
           const headers = new HttpHeaders().set('Authorization', authToken);
 
-          this.http.get<any>('https://authwebapi.azurewebsites.net/api/values', {
+          this.http.get<any>('https://localhost:44381/api/values/1', {
             headers: headers
           }).subscribe(
             data => {
